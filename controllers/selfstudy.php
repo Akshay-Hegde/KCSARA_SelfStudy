@@ -16,6 +16,6 @@ class SelfStudy extends Public_Controller
 	{
 		$this->template
 			->title( lang('selfstudy:index_title') )
-        	->build( 'index' );
-	}	
+			->build( 'index' );
+	}
 }

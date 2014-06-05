@@ -8,6 +8,7 @@ class Admin extends Admin_Controller
 		parent::__construct();
 
 		$this->load->model('admin_m');
+		$this->lang->load('selfstudy');
 
 	}
 
