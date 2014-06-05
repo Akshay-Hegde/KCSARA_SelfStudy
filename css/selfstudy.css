@@ -1,0 +1,40 @@
+.exams-data table { width: 100%; }
+.exams-data td:first-child { width: 30%; }
+.exams-data th { font-weight: bold; border-bottom: 1px solid #d8d8d8; }
+.exams-data th, .exams-data td { text-align: left; padding:0.75em; }
+.exams-data td { background-color: #f2f2f2; vertical-align:top; }
+.exams-note { cursor: help; }
+
+.exams_container {padding-bottom: 1em;}
+.exams_container .title h2 { margin-bottom: 0; }
+.exams_container .title p { margin: 0; }
+
+header.title { margin-bottom: 1em; }
+
+fieldset {
+  margin:0.5em;
+}
+
+fieldset legend { display: none; }
+fieldset p { margin: 0; font-weight: bold;}
+fieldset li {
+  display: block;
+  white-space: nowrap;
+  margin-left:0;
+}
+
+fieldset label {
+  display: inline-block;
+  white-space: normal;
+  width: 8em;
+  vertical-align: top;
+}
+input, select, textarea { width: 25em; }
+textarea { height: 3em; }
+
+.option label { width:100%; }
+.option input {width:auto; margin-right:0.75em;}
+input.controls {width:auto;}
+.visitor li {margin-bottom:0.5em;}
+.help {margin-left:1em; cursor: help;}
+label img {margin:0;}
