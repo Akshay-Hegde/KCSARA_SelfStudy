@@ -8,13 +8,14 @@ class SelfStudy extends Public_Controller
 		parent::__construct();
 
 		$this->load->model('selfstudy_m');
+		$this->lang->load('selfstudy');
 
 	}
 
 	public function index()
 	{
 		$this->template
-			->title( 'Self Study' )
-        	->build('index');
+			->title( lang('selfstudy:index_title') )
+        	->build( 'index' );
 	}	
 }
