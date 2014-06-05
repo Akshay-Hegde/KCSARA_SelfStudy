@@ -1,6 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class SelfStudy extends Public_Controller {
+class SelfStudy extends Public_Controller
+{
 
 	public function __construct()
 	{
