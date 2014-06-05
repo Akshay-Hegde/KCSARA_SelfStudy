@@ -41,14 +41,15 @@ class Module_SelfStudy extends Module {
 			$_table_prefix . 'lessons' => array(
 				'lessonid' => array('type' => 'CHAR', 'constraint' => 64, 'primary' => true),
 				'courseid' => array('type' => 'CHAR', 'constraint' => 64),
-				'slub' => array('type' => 'CHAR', 'constraint' => 64),
+				'slug' => array('type' => 'CHAR', 'constraint' => 64),
 				'title' => array('type' => 'VARCHAR', 'constraint' => 255, 'default' => ''),
 				'html' => array('type' => 'LONGTEXT')
 			),
 
 			$_table_prefix . 'courses' => array(
 				'courseid' => array('type' => 'CHAR', 'constraint' => 64, 'primary' => true),
-				'slub' => array('type' => 'CHAR', 'constraint' => 64),
+				'slug' => array('type' => 'CHAR', 'constraint' => 64),
+				'published' => array('type' => 'TINYINT', 'constraint' => 4, 'default' => '0'),
 				'title' => array('type' => 'VARCHAR', 'constraint' => 255, 'default' => ''),
 				'description' => array('type' => 'VARCHAR', 'constraint' => 255, 'default' => ''),
 				'version' => array('type' => 'VARCHAR', 'constraint' => 255, 'default' => ''),
