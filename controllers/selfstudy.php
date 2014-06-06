@@ -16,6 +16,7 @@ class SelfStudy extends Public_Controller
 	{
 		$this->template
 			->title( lang('selfstudy:index_title') )
+			->set( 'list', array(array('title'=>'foo'), array('title'=>'bar')) )
 			->build( 'index' );
 	}
 }

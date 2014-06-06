@@ -1,5 +1,15 @@
 <div id="selfstudy-content">
 
-	<p><?php echo lang('selfstudy:fpo_copy'); ?></p>
+	{{ if ! list }}
+	<p>{{ helper:lang line="selfstudy:no_courses_found" }}</p>
+	
+	{{ else }}
+	<ul>
+		{{ list }}
+		<li>{{ title }}</li>
+		{{ /list }}
+	</ul>
+
+	{{ endif }}
 
 </div>
