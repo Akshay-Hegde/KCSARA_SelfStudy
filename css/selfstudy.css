@@ -1,1 +1,9 @@
-.selfstudy-content p { color: blue; }
+#selfstudy-content {
+	position: relative;
+}
+
+#selfstudy-content #toc {
+	position: absolute;
+	top:0;
+	right:0;
+}
