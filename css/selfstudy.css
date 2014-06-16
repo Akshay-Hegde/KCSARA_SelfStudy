@@ -1,9 +1,4 @@
-#selfstudy-content {
-	position: relative;
-}
-
 #selfstudy-content #toc {
-	position: absolute;
-	top:0;
-	right:0;
+	float:right;
+	margin-left:1em;
 }

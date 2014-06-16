@@ -20,7 +20,7 @@ class SelfStudy_m extends MY_Model {
 		$this->db->join($this->db->dbprefix($_table_prefix . 'courses') . ' AS c', 'l.courseid = c.courseid');
 
 		$this->db->where('c.`slug`', $course_slug);
-		$this->db->order_by('l.`title`');
+		$this->db->order_by('l.`displayorder`');
 
 		return $this->db->get()->result_array();
 
@@ -39,7 +39,7 @@ class SelfStudy_m extends MY_Model {
 		{
 			$this->db->where('l.slug', $lesson_slug);
 		}
-		$this->db->order_by('l.`title`');
+		$this->db->order_by('l.`displayorder`');
 		$this->db->limit(1);
 
 		$data = $this->db->get()->result_array();
