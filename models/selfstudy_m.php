@@ -5,8 +5,9 @@ class SelfStudy_m extends MY_Model {
 	public function get_all_published_courses()
 	{
 		$_table_prefix = $this->config->item('selfstudy._table_prefix');
+		$this->db->select('`slug`, `title`');
 		$this->db->where('published', 1);
-		$this->db->order_by("title");
+		$this->db->order_by('title');
 		return $this->db->get($this->db->dbprefix($_table_prefix . 'courses'))->result_array();
 	}
 

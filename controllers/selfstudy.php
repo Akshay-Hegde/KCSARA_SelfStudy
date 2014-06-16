@@ -12,11 +12,30 @@ class SelfStudy extends Public_Controller
 
 	}
 
+	private function uri_base( $str )
+    {
+		$segments = explode( "/", str_replace(site_url(), "", current_url()));
+		
+		$base = array();
+		$i = 0;
+		while ( $segments[$i] != 'selfstudy' )
+		{
+			$base[] = $segments[$i]; 
+			$i++;
+		}
+		$base[] = $str;
+
+    	return implode( '/', $base );
+	}
+
 	public function index()
 	{
+		$data_published_courses = $this->selfstudy_m->get_all_published_courses();
+
 		$this->template
 			->title( lang('selfstudy:index_title') )
-			->set( 'list', array(array('title'=>'foo'), array('title'=>'bar')) )
+			->set( 'data_published_courses', $data_published_courses )
+			->set( 'uri_base', $this->uri_base('selfstudy/') )
 			->build( 'index' );
 	}
 }
