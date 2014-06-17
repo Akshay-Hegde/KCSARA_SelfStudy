@@ -19,9 +19,5 @@
 |
 |	http://www.codeigniter.com/user_guide/general/routing.html
 */
-$route['selfstudy']									= 'selfstudy/index';
-$route['selfstudy/([a-z0-9\-\_\.\+\/]+)']			= 'selfstudy/course/$1';
 
-$route['admin/selfstudy']							= 'admin/selfstudy/index';
-$route['admin/selfstudy/([a-z0-9-]+)']				= 'admin/selfstudy/course/$1';
-
+$route['selfstudy/(?!admin)(:any)']	= 'selfstudy/course/$2';
