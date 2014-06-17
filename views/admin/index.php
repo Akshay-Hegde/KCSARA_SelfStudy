@@ -1,7 +1,5 @@
 <div id="selfstudy-content">
 
-	<p><?php echo lang('selfstudy:fpo_copy'); ?></p>
-
 	<?php if( ! empty($data_published_courses) ): ?>
 
 		<div class="one_full">
@@ -44,7 +42,7 @@
 
 		<div class="one_full">
 			<section class="title">
-				<h4><?php echo lang('selfstudy:unpublished_exams') ?></h4>
+				<h4><?php echo lang('selfstudy:unpublished_courses') ?></h4>
 			</section>
 
 			<section class="item">
