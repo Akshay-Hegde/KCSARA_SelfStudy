@@ -3,6 +3,8 @@
 class Admin extends Admin_Controller
 {
 
+	protected $section = 'courses';
+
 	public function __construct()
 	{
 		parent::__construct();

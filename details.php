@@ -19,11 +19,24 @@ class Module_SelfStudy extends Module {
 				'en' => 'SelfStudy',
 			),
 			'description' => array(
-				'en' => 'The selfstudy module creates a multi-page self study sub-site from a single HTML-formatted file stored on GitHub.',
+				'en' => 'The selfstudy module creates multi-page self study sub-sites.',
 			),
 			'frontend' => TRUE,
 			'backend' => TRUE,
-			'menu' => 'content'
+			'menu' => 'content',
+			'shortcuts' => array(
+				'create' => array(
+					'name' 	=> 'selfstudy:new_course',
+					'uri' 	=> 'admin/selfstudy/create',
+					'class'	=>	'add'
+				)
+			),
+			'sections' => array(
+				'courses' => array(
+					'name' 	=> 'selfstudy:courses', // These are translated from your language file
+					'uri' 	=> 'admin/selfstudy'
+				)
+			)
 		);
 	}
 
@@ -53,7 +66,6 @@ class Module_SelfStudy extends Module {
 				'title' => array('type' => 'VARCHAR', 'constraint' => 255, 'default' => ''),
 				'description' => array('type' => 'VARCHAR', 'constraint' => 255, 'default' => ''),
 				'version' => array('type' => 'VARCHAR', 'constraint' => 255, 'default' => ''),
-				'tochtml' => array('type' => 'LONGTEXT'),
 				'rawhtml' => array('type' => 'LONGTEXT')
 			),
 

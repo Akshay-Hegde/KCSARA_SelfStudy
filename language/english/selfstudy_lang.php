@@ -16,9 +16,11 @@ $lang['selfstudy:help']						=	'Help';
 $lang['selfstudy:finish']					=	'Finish';
 
 //labels
+$lang['selfstudy:courses']					=	'Courses';
+$lang['selfstudy:new_course']				=	'New Course';
 $lang['selfstudy:published_courses']		=	'Published Courses';
 $lang['selfstudy:unpublished_courses']		=	'Unpublished Courses';
-$lang['selfstudy:title']						=	'Title';
+$lang['selfstudy:title']					=	'Title';
 $lang['selfstudy:description']				=	'Description';
 $lang['selfstudy:version']					=	'Version';
 
