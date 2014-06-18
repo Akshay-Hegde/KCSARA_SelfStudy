@@ -2,6 +2,22 @@
 
 class Admin_m extends MY_Model {
 
+	public function get_course( $slug )
+	{
+		$_table_prefix = $this->config->item('selfstudy._table_prefix');
+		$this->db->where('slug', $slug);
+		$data = $this->db->get($this->db->dbprefix($_table_prefix . 'courses'))->result_array();
+
+		if( empty($data) )
+		{
+			return NULL;
+		}
+		else
+		{
+			return $data[0];
+		}
+	}
+
 	public function get_all_published_courses()
 	{
 		$_table_prefix = $this->config->item('selfstudy._table_prefix');

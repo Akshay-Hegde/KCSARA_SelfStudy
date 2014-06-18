@@ -25,8 +25,8 @@
 									<td><?php echo $data['description'] ?></td>
 									<td class="align-center"><?php echo $data['version'] ?></td>
 									<td class="actions">
-										<a href="<?php echo site_url('admin/selfstudy/' . $data['slug']) ?>" title="<?php echo lang('selfstudy:edit_link_title')?>" class="button confirm"><?php echo lang('selfstudy:edit')?></a>
-										<a href="<?php echo site_url('admin/selfstudy/depublish/' . $data['slug']) ?>" title="<?php echo lang('selfstudy:depublish_link_title')?>" class="button confirm"><?php echo lang('selfstudy:depublish')?></a>
+										<a href="<?php echo site_url('admin/selfstudy/edit/' . $data['slug']) ?>" title="<?php echo lang('selfstudy:edit_link_title')?>" class="button"><?php echo lang('selfstudy:edit')?></a>
+										<a href="<?php echo site_url('admin/selfstudy/depublish/' . $data['slug']) ?>" title="<?php echo lang('selfstudy:depublish_link_title')?>" class="button"><?php echo lang('selfstudy:depublish')?></a>
 									</td>
 								</tr>
 							<?php endforeach;?>
@@ -63,8 +63,8 @@
 									<td><?php echo $data['description'] ?></td>
 									<td class="align-center"><?php echo $data['version'] ?></td>
 									<td class="actions">
-										<a href="<?php echo site_url('admin/selfstudy/edit/' . $data['slug']) ?>" title="<?php echo lang('selfstudy:edit_link_title')?>" class="button confirm"><?php echo lang('selfstudy:edit')?></a>
-										<a href="<?php echo site_url('admin/selfstudy/publish/' . $data['slug']) ?>" title="<?php echo lang('selfstudy:publish_link_title')?>" class="button confirm"><?php echo lang('selfstudy:publish')?></a>
+										<a href="<?php echo site_url('admin/selfstudy/edit/' . $data['slug']) ?>" title="<?php echo lang('selfstudy:edit_link_title')?>" class="button"><?php echo lang('selfstudy:edit')?></a>
+										<a href="<?php echo site_url('admin/selfstudy/publish/' . $data['slug']) ?>" title="<?php echo lang('selfstudy:publish_link_title')?>" class="button"><?php echo lang('selfstudy:publish')?></a>
 										<a href="<?php echo site_url('admin/selfstudy/delete/' . $data['slug']) ?>" title="<?php echo lang('selfstudy:delete_link_title')?>" class="button confirm"><?php echo lang('selfstudy:delete')?></a>
 									</td>
 								</tr>

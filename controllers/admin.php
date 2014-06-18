@@ -3,8 +3,16 @@
 class Admin extends Admin_Controller
 {
 
+	/**
+	 * The current active section.
+	 *
+	 * @var int
+	 */
 	protected $section = 'courses';
 
+	/**
+	 * Constructor method
+	 */
 	public function __construct()
 	{
 		parent::__construct();
@@ -36,6 +44,9 @@ class Admin extends Admin_Controller
 
 	}
 
+	/**
+	 * List all courses
+	 */
 	public function index()
 	{
 		$data_published_courses = $this->admin_m->get_all_published_courses();
@@ -45,6 +56,30 @@ class Admin extends Admin_Controller
 			->set('data_published_courses', $data_published_courses)
 			->set('data_unpublished_courses', $data_unpublished_courses)
 			->build('admin/index');
+	}
+
+	public function create()
+	{
+		$this->template
+			->set('title', '')
+			->set('slug', '')
+			->set('description', '')
+			->set('version', '')
+			->set('uri', '')
+			->build('admin/edit_course');
+	}
+
+	public function edit()
+	{
+		$data_course = $this->admin_m->get_course( $this->uri->segment(4) );
+
+		$this->template
+			->set('title', $data_course['title'])
+			->set('slug', $data_course['slug'])
+			->set('description', $data_course['description'])
+			->set('version', $data_course['version'])
+			->set('uri', $data_course['version'])
+			->build('admin/edit_course');
 	}
 
 	public function publish()
