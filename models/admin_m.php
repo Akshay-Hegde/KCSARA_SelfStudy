@@ -21,7 +21,7 @@ class Admin_m extends MY_Model {
 	public function get_lessons( $course_slug )
 	{
 		$_table_prefix = $this->config->item('selfstudy._table_prefix');
-		$this->db->select("l.`slug`, l.`title`, l.`displayorder`");
+		$this->db->select("l.`lessonid`, l.`slug`, l.`title`, l.`displayorder`");
 
 		$this->db->from($this->db->dbprefix($_table_prefix . 'lessons') . ' AS l');
 		$this->db->join($this->db->dbprefix($_table_prefix . 'courses') . ' AS c', 'l.courseid = c.courseid');
@@ -29,6 +29,18 @@ class Admin_m extends MY_Model {
 		$this->db->where('c.`slug`', $course_slug);
 		$this->db->order_by('l.`displayorder`');
 		return $this->db->get()->result_array();
+	}
+
+	public function update_displayorder( $ids )
+	{
+		$_table_prefix = $this->config->item('selfstudy._table_prefix');
+		$i = 0;
+		foreach ($ids as $id)
+		{
+			$this->db->where('lessonid', $id);
+			$this->db->update($this->db->dbprefix($_table_prefix . 'lessons'), array( 'displayorder' => $i )); 
+			$i++;
+		}
 	}
 
 	public function get_all_published_courses()

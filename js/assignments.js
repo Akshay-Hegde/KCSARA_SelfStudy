@@ -18,7 +18,7 @@
 					dataType: 'text',
 					type: 'POST',
 					data: 'order='+order+'&offset='+fields_offset+'&csrf_hash_name='+$.cookie(pyro.csrf_cookie_name),
-					url:  SITE_URL+'streams_core/ajax/update_field_order',
+					url:  SITE_URL+'admin/selfstudy/update_lesson_order',
 					success: function() {
 						$('tr').removeClass('alt');
 						$('tr:even').addClass('alt');

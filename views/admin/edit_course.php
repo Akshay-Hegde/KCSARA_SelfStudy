@@ -62,7 +62,7 @@
 									<?php foreach($data_lessons as $data): ?>
 										<tr>
 											<td width="30" class="handle"><img alt="Drag Handle" src="http://pyro.douglasburchard.com/system/cms/themes/pyrocms/img/icons/drag_handle.gif" /></td>
-											<td class="collapse"><input type="hidden" name="action_to[]" value="1" /><?php echo $data['title'] ?></td>
+											<td class="collapse"><input type="hidden" name="action_to[]" value="<?php echo $data['lessonid'] ?>" /><?php echo $data['title'] ?></td>
 											<td class="actions">
 												<a href="" title="<?php echo lang('selfstudy:edit_link_title')?>" class="button"><?php echo lang('selfstudy:edit')?></a>
 												<a href="" title="<?php echo lang('selfstudy:depublish_link_title')?>" class="button confirm"><?php echo lang('selfstudy:delete')?></a>

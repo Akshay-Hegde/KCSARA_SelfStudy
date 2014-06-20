@@ -76,6 +76,7 @@ class Admin extends Admin_Controller
 		$data_lessons = $this->admin_m->get_lessons( $this->uri->segment(4) );
 
 		$this->template
+			->append_metadata('<script>var fields_offset=0;</script>')
 			->append_js('module::assignments.js')
 			->set('title', $data_course['title'])
 			->set('slug', $data_course['slug'])
@@ -83,6 +84,16 @@ class Admin extends Admin_Controller
 			->set('version', $data_course['version'])
 			->set('data_lessons', $data_lessons)
 			->build('admin/edit_course');
+	}
+
+	public function update_lesson_order()
+	{
+		/**
+		 * This function is not safe for paginated lists.
+		 */
+		$ids = explode(',', $this->input->post('order'));
+		$this->admin_m->update_displayorder( $ids );
+
 	}
 
 	public function publish()
