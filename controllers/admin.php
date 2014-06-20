@@ -61,24 +61,27 @@ class Admin extends Admin_Controller
 	public function create()
 	{
 		$this->template
+			->append_js('module::assignments.js')
 			->set('title', '')
 			->set('slug', '')
 			->set('description', '')
 			->set('version', '')
-			->set('uri', '')
+			->set('data_lessons', array())
 			->build('admin/edit_course');
 	}
 
 	public function edit()
 	{
 		$data_course = $this->admin_m->get_course( $this->uri->segment(4) );
+		$data_lessons = $this->admin_m->get_lessons( $this->uri->segment(4) );
 
 		$this->template
+			->append_js('module::assignments.js')
 			->set('title', $data_course['title'])
 			->set('slug', $data_course['slug'])
 			->set('description', $data_course['description'])
 			->set('version', $data_course['version'])
-			->set('uri', $data_course['version'])
+			->set('data_lessons', $data_lessons)
 			->build('admin/edit_course');
 	}
 
