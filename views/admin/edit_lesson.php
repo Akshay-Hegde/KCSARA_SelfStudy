@@ -43,7 +43,7 @@
 						</fieldset>
 					</div><!-- /#course-details -->
 
-					<div class="form_inputs" id="lesson-content">
+					<div class="form_inputs ui-tabs-hide" id="lesson-content">
 						<fieldset>
 							<ul>
 								<li>
@@ -57,7 +57,9 @@
 				</div>
 
 				<div class="buttons align-right padding-top">
-					<?php $this->load->view('admin/partials/buttons', array('buttons' => array('save', 'save_exit', 'cancel') )) ?>
+					<?php echo form_button( array( 'name' => 'btnAction', 'value' => 'save', 'type' => 'submit', 'content' => 'Save', 'class' => 'btn blue') ); ?>
+					<?php echo form_button( array( 'name' => 'btnAction', 'value' => 'save_exit', 'type' => 'submit', 'content' => 'Save &amp; Exit', 'class' => 'btn blue') ); ?>
+					<a href="admin/selfstudy/edit/<?php echo $course_slug; ?>#course-lessons" class="btn gray cancel">Cancel</a>
 				</div><!-- /.buttons -->
 
 
