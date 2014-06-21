@@ -72,12 +72,50 @@ class Admin extends Admin_Controller
 
 	public function edit()
 	{
+		$input = $this->input->post();
+
+		if(
+			isset( $input['courseid'] ) AND
+			isset( $input['title'] ) AND
+			isset( $input['slug'] ) AND
+			isset( $input['description'] ) AND
+			isset( $input['version'] )
+			)
+		{
+			$id = $input['courseid'];
+			$new = FALSE;
+			if( $id == "" )
+			{
+				$id = $this->generate_uuid4();
+				$new = TRUE;
+			}
+			$this->admin_m->set_course(
+				$id,
+				$input['title'],
+				$input['slug'],
+				$input['description'],
+				$input['version'],
+				$new
+			);
+			$this->session->set_flashdata('success', lang('selfstudy:courseedit_success') );
+		}
+
+		/* If exit is indicated, redirect */
+		if( $input['btnAction'] == 'save_exit' )
+		{
+			redirect('admin/selfstudy');
+			return NULL;
+		}
+
+		/* If exit is not indicated, load form and tabs. */
+
 		$data_course = $this->admin_m->get_course( $this->uri->segment(4) );
 		$data_lessons = $this->admin_m->get_lessons( $this->uri->segment(4) );
 
 		$this->template
 			->append_metadata('<script>var fields_offset=0;</script>')
 			->append_js('module::assignments.js')
+			->set('courseid', $data_course['courseid'])
 			->set('title', $data_course['title'])
 			->set('slug', $data_course['slug'])
 			->set('description', $data_course['description'])

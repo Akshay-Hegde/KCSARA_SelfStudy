@@ -18,6 +18,27 @@ class Admin_m extends MY_Model {
 		}
 	}
 
+	public function set_course( $id, $title, $slug, $description, $version, $new = FALSE )
+	{
+		$_table_prefix = $this->config->item('selfstudy._table_prefix');
+		$data = array(
+				'title' => $title,
+				'slug' => $slug,
+				'description' => $description,
+				'version' => $version,
+			);
+		if( $new)
+		{
+			$data['courseid'] = $id;
+			$this->db->insert($this->db->dbprefix($_table_prefix . 'courses'), $data); 
+		}
+		else
+		{
+			$this->db->where('courseid', $id);
+			$this->db->update($this->db->dbprefix($_table_prefix . 'courses'), $data); 
+		}
+	}
+
 	public function get_lessons( $course_slug )
 	{
 		$_table_prefix = $this->config->item('selfstudy._table_prefix');

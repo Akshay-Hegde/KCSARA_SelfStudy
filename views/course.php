@@ -19,7 +19,6 @@
 			<h1><?php echo "Oops! We're Sorry." ?></h1>
 			<p><?php echo "There isn't a lesson by that title in this course." ?></p>
 		<?php else: ?>
-			<h2><?php echo $data_lesson['lesson_title'] ?></h2>
 			<?php echo $data_lesson['lesson_html'] ?>
 		<?php endif ?>
 	</div>

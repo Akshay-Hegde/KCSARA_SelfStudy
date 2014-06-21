@@ -1,21 +1,25 @@
-<div id="selfstudy-content">
+<div class="one_full">
 
-	<div id="content-body">
-		<section class="title">
-			<h4><?php
-			if( $title )
-			{
-				echo 'Edit Course: ' . $title;
-			}
-			else
-			{
-				echo 'New Course';
-			}
-			?></h4>
-		</section>
+	<?php echo validation_errors(); ?>
 
-		<section class="item">
-			<div class="content">
+	<section class="title">
+		<h4><?php
+		if( $title )
+		{
+			echo 'Edit Course: ' . $title;
+		}
+		else
+		{
+			echo 'New Course';
+		}
+		?></h4>
+	</section>
+
+	<section class="item">
+		<div class="content">
+
+			<?php echo form_open_multipart(uri_string(), 'id="selfstudy-form" data-mode="'.$this->method.'"') ?>
+				<?php echo form_hidden('courseid', empty($courseid) ? "" : $courseid) ?>
 
 				<div class="tabs">
 
@@ -46,7 +50,7 @@
 								</li>
 							</ul>
 						</fieldset>
-					</div><!-- /.form_inputs -->
+					</div><!-- /#course-details -->
 
 					<div class="form_inputs" id="course-lessons">
 						<fieldset>
@@ -72,7 +76,7 @@
 								</tbody>
 							</table>
 						</fieldset>
-					</div><!-- /.form_inputs -->
+					</div><!-- /#course-lessons -->
 
 					<div class="form_inputs" id="repository">
 						<fieldset>
@@ -80,24 +84,24 @@
 								<li><?php echo lang('selfstudy:under_development'); ?></li>
 							</ul>
 						</fieldset>
-					</div><!-- /.form_inputs -->
+					</div><!-- /#repository -->
 
 				</div>
 
 				<div class="buttons align-right padding-top">
-					<?php $this->load->view('admin/partials/buttons', array('buttons' => array('save', 'cancel') )); ?>
+					<?php $this->load->view('admin/partials/buttons', array('buttons' => array('save', 'save_exit', 'cancel') )) ?>
 				</div><!-- /.buttons -->
 
-			</div>
-		</section>
 
+			<?php echo form_close() ?>
 
-
-
-
-
-	</div>
+		</div>
+	</section>
 
 </div>
+
+
+
+
 
 
