@@ -70,7 +70,7 @@ class Admin extends Admin_Controller
 			->build('admin/edit_course');
 	}
 
-	public function edit()
+	public function edit_course()
 	{
 		$input = $this->input->post();
 
@@ -107,8 +107,6 @@ class Admin extends Admin_Controller
 			return NULL;
 		}
 
-		/* If exit is not indicated, load form and tabs. */
-
 		$data_course = $this->admin_m->get_course( $this->uri->segment(4) );
 		$data_lessons = $this->admin_m->get_lessons( $this->uri->segment(4) );
 
@@ -122,6 +120,40 @@ class Admin extends Admin_Controller
 			->set('version', $data_course['version'])
 			->set('data_lessons', $data_lessons)
 			->build('admin/edit_course');
+	}
+
+	public function edit_lesson()
+	{
+
+		$data_lesson = $this->admin_m->get_lesson( $this->uri->segment(4), $this->uri->segment(5) );
+
+		$this->template
+			->append_metadata($this->load->view('fragments/wysiwyg', array(), TRUE))
+			->set('lessonid', $data_lesson['lessonid'])
+			->set('course_title', $data_lesson['course_title'])
+			->set('title', $data_lesson['title'])
+			->set('course_slug', $data_lesson['course_slug'])
+			->set('slug', $data_lesson['slug'])
+			->set('content', $data_lesson['content'])
+			->build('admin/edit_lesson');
+	}
+
+	public function edit()
+	{
+
+		if( $this->uri->segment(5) != NULL )
+		{
+			$this->edit_lesson();
+		}
+		elseif( $this->uri->segment(4) != NULL )
+		{
+			return $this->edit_course();
+		}
+		else
+		{
+			redirect('admin/selfstudy');
+		}
+
 	}
 
 	public function update_lesson_order()

@@ -52,6 +52,29 @@ class Admin_m extends MY_Model {
 		return $this->db->get()->result_array();
 	}
 
+	public function get_lesson( $course_slug, $lesson_slug )
+	{
+		$_table_prefix = $this->config->item('selfstudy._table_prefix');
+		$this->db->select("l.`lessonid`, c.`slug` AS 'course_slug', l.`slug`, c.`title` AS 'course_title', l.`title`, l.`html` AS 'content'");
+
+		$this->db->from($this->db->dbprefix($_table_prefix . 'lessons') . ' AS l');
+		$this->db->join($this->db->dbprefix($_table_prefix . 'courses') . ' AS c', 'l.courseid = c.courseid');
+
+		$this->db->where('c.`slug`', $course_slug);
+		$this->db->where('l.`slug`', $lesson_slug);
+
+		$data = $this->db->get()->result_array();
+
+		if( empty($data) )
+		{
+			return NULL;
+		}
+		else
+		{
+			return $data[0];
+		}
+	}
+
 	public function update_displayorder( $ids )
 	{
 		$_table_prefix = $this->config->item('selfstudy._table_prefix');
