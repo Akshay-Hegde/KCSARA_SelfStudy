@@ -59,7 +59,7 @@
 									<tr>
 										<th></th>
 										<th><?php echo lang('selfstudy:lesson_title') ?></th>
-										<th class="actions"><a href="" title="<?php echo lang('selfstudy:edit_link_title')?>" class="button">+ New Lesson</a></th>
+										<th class="actions"><a href="admin/selfstudy/create/<?php echo $slug; ?>/" title="<?php echo lang('selfstudy:edit_link_title')?>" class="button">+ New Lesson</a></th>
 									</tr>
 								</thead>
 								<tbody class="ui-sortable">
@@ -69,7 +69,7 @@
 											<td class="collapse"><input type="hidden" name="action_to[]" value="<?php echo $data['lessonid'] ?>" /><?php echo $data['title'] ?></td>
 											<td class="actions">
 												<a href="admin/selfstudy/edit/<?php echo $slug . "/" . $data['slug'] ?>" title="<?php echo lang('selfstudy:edit_link_title') ?>" class="button"><?php echo lang('selfstudy:edit')?></a>
-												<a href="" title="<?php echo lang('selfstudy:depublish_link_title')?>" class="button confirm"><?php echo lang('selfstudy:delete')?></a>
+												<a href="admin/selfstudy/delete/<?php echo $slug . "/" . $data['slug'] ?>" title="<?php echo lang('selfstudy:delete_link_title')?>" class="button confirm"><?php echo lang('selfstudy:delete')?></a>
 											</td>
 										</tr>
 									<?php endforeach; ?>

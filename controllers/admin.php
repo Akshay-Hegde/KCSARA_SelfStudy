@@ -73,6 +73,7 @@ class Admin extends Admin_Controller
 	public function edit_course()
 	{
 		$input = $this->input->post();
+		$success = FALSE;
 
 		if(
 			isset( $input['courseid'] ) AND
@@ -97,12 +98,13 @@ class Admin extends Admin_Controller
 				$input['version'],
 				$new
 			);
-			$this->session->set_flashdata('success', lang('selfstudy:courseedit_success') );
+			$success = lang('selfstudy:courseedit_success');
 		}
 
 		/* If exit is indicated, redirect */
 		if( $input['btnAction'] == 'save_exit' )
 		{
+			if( $success !== FALSE ) { $this->session->set_flashdata('success', $success ); }
 			redirect('admin/selfstudy');
 			return NULL;
 		}
@@ -113,6 +115,7 @@ class Admin extends Admin_Controller
 		$this->template
 			->append_metadata('<script>var fields_offset=0;</script>')
 			->append_js('module::assignments.js')
+			->set('success', $success)
 			->set('courseid', $data_course['courseid'])
 			->set('title', $data_course['title'])
 			->set('slug', $data_course['slug'])
@@ -125,6 +128,7 @@ class Admin extends Admin_Controller
 	public function edit_lesson()
 	{
 		$input = $this->input->post();
+		$success = FALSE;
 
 		/* Handle post-data */
 		if(
@@ -148,7 +152,7 @@ class Admin extends Admin_Controller
 				$input['content'],
 				$new
 			);
-			$this->session->set_flashdata('success', lang('selfstudy:lessonedit_success') );
+			$success = lang('selfstudy:lessonedit_success');
 		}
 
 		$data_lesson = $this->admin_m->get_lesson( $this->uri->segment(4), $this->uri->segment(5) );
@@ -156,12 +160,14 @@ class Admin extends Admin_Controller
 		/* If exit is indicated, redirect */
 		if( $input['btnAction'] == 'save_exit' )
 		{
+			if( $success !== FALSE ) { $this->session->set_flashdata('success', $success ); }
 			redirect('admin/selfstudy/edit/' . $data_lesson['course_slug'] . '#course-lessons');
 			return NULL;
 		}
 
 		$this->template
 			->append_metadata($this->load->view('fragments/wysiwyg', array(), TRUE))
+			->set('success', $success)
 			->set('lessonid', $data_lesson['lessonid'])
 			->set('course_title', $data_lesson['course_title'])
 			->set('title', $data_lesson['title'])
@@ -181,6 +187,43 @@ class Admin extends Admin_Controller
 		elseif( $this->uri->segment(4) != NULL )
 		{
 			return $this->edit_course();
+		}
+		else
+		{
+			redirect('admin/selfstudy');
+		}
+
+	}
+
+	public function delete_course()
+	{
+		if( $this->admin_m->delete_course( $this->uri->segment(4) ) )
+		{
+			$this->session->set_flashdata('success', lang('selfstudy:coursedelete_success') );
+		}
+		else
+		{
+			$this->session->set_flashdata('success', lang('selfstudy:coursedelete_error') );
+		}
+		redirect('admin/selfstudy');
+	}
+
+	public function delete_lesson()
+	{
+		$course_slug = $this->admin_m->delete_lesson( $this->uri->segment(4), $this->uri->segment(5) );
+		redirect('admin/selfstudy/edit/' . $course_slug . '#course-lessons');
+	}
+
+	public function delete()
+	{
+
+		if( $this->uri->segment(5) != NULL )
+		{
+			$this->delete_lesson();
+		}
+		elseif( $this->uri->segment(4) != NULL )
+		{
+			return $this->delete_course();
 		}
 		else
 		{

@@ -39,6 +39,24 @@ class Admin_m extends MY_Model {
 		}
 	}
 
+	public function delete_course( $slug )
+	{
+		$_table_prefix = $this->config->item('selfstudy._table_prefix');
+		$this->db->where('slug', $slug);
+		$data = $this->db->get($this->db->dbprefix($_table_prefix . 'courses'))->result_array();
+
+		if( empty($data) )
+		{
+			return FALSE;
+		}
+		else
+		{
+			$this->db->delete( $this->db->dbprefix($_table_prefix . 'lessons'), array('courseid' => $data[0]['courseid']));
+			$this->db->delete( $this->db->dbprefix($_table_prefix . 'courses'), array('courseid' => $data[0]['courseid']));
+			return TRUE;
+		}
+	}
+
 	public function get_lessons( $course_slug )
 	{
 		$_table_prefix = $this->config->item('selfstudy._table_prefix');
@@ -92,6 +110,28 @@ class Admin_m extends MY_Model {
 		{
 			$this->db->where('lessonid', $id);
 			$this->db->update($this->db->dbprefix($_table_prefix . 'lessons'), $data); 
+		}
+	}
+
+	public function delete_lesson( $course_slug, $lesson_slug )
+	{
+		$_table_prefix = $this->config->item('selfstudy._table_prefix');
+
+		$this->db->select("l.`lessonid`, c.`slug` AS 'course_slug'");
+		$this->db->from($this->db->dbprefix($_table_prefix . 'lessons') . ' AS l');
+		$this->db->join($this->db->dbprefix($_table_prefix . 'courses') . ' AS c', 'l.courseid = c.courseid');
+		$this->db->where('c.`slug`', $course_slug);
+		$this->db->where('l.`slug`', $lesson_slug);
+		$data = $this->db->get()->result_array();
+
+		if( empty($data) )
+		{
+			return FALSE;
+		}
+		else
+		{
+			$this->db->delete( $this->db->dbprefix($_table_prefix . 'lessons'), array('lessonid' => $data[0]['lessonid']) );
+			return $data[0]['course_slug'];
 		}
 	}
 

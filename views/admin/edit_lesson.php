@@ -1,3 +1,9 @@
+<?php if( $success !== FALSE ): ?>
+<div class="alert success animated fadeIn">
+	<p><?php echo $success; ?></p>
+</div>
+<?php endif; ?>
+
 <div class="one_full">
 
 	<?php echo validation_errors(); ?>

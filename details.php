@@ -16,10 +16,10 @@ class Module_SelfStudy extends Module {
 	{
 		return array(
 			'name' => array(
-				'en' => 'SelfStudy',
+				'en' => 'Self Study',
 			),
 			'description' => array(
-				'en' => 'The selfstudy module creates multi-page self study sub-sites.',
+				'en' => 'The self study module creates multi-page self study sub-sites.',
 			),
 			'frontend' => TRUE,
 			'backend' => TRUE,
@@ -29,12 +29,6 @@ class Module_SelfStudy extends Module {
 					'name' 	=> 'selfstudy:new_course',
 					'uri' 	=> 'admin/selfstudy/create',
 					'class'	=>	'add'
-				)
-			),
-			'sections' => array(
-				'courses' => array(
-					'name' 	=> 'selfstudy:courses', // These are translated from your language file
-					'uri' 	=> 'admin/selfstudy'
 				)
 			)
 		);
