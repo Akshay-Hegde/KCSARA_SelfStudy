@@ -31,3 +31,4 @@ $lang['selfstudy:uri']						=	'URI';
 $lang['selfstudy:publish_success']			=	'The course has been published.';
 $lang['selfstudy:depublish_success']		=	'The course has been depublished.';
 $lang['selfstudy:courseedit_success']		=	'The course has been updated.';
+$lang['selfstudy:lessonedit_success']		=	'The lesson has been updated.';

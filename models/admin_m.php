@@ -75,6 +75,26 @@ class Admin_m extends MY_Model {
 		}
 	}
 
+	public function set_lesson( $id, $title, $slug, $content, $new = FALSE )
+	{
+		$_table_prefix = $this->config->item('selfstudy._table_prefix');
+		$data = array(
+				'title' => $title,
+				'slug' => $slug,
+				'html' => $content,
+			);
+		if( $new)
+		{
+			$data['lessonid'] = $id;
+			$this->db->insert($this->db->dbprefix($_table_prefix . 'lessons'), $data); 
+		}
+		else
+		{
+			$this->db->where('lessonid', $id);
+			$this->db->update($this->db->dbprefix($_table_prefix . 'lessons'), $data); 
+		}
+	}
+
 	public function update_displayorder( $ids )
 	{
 		$_table_prefix = $this->config->item('selfstudy._table_prefix');

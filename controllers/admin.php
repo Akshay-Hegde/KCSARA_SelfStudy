@@ -124,8 +124,41 @@ class Admin extends Admin_Controller
 
 	public function edit_lesson()
 	{
+		$input = $this->input->post();
+
+		/* Handle post-data */
+		if(
+			isset( $input['lessonid'] ) AND
+			isset( $input['title'] ) AND
+			isset( $input['slug'] ) AND
+			isset( $input['content'] )
+			)
+		{
+			$id = $input['lessonid'];
+			$new = FALSE;
+			if( $id == "" )
+			{
+				$id = $this->generate_uuid4();
+				$new = TRUE;
+			}
+			$this->admin_m->set_lesson(
+				$id,
+				$input['title'],
+				$input['slug'],
+				$input['content'],
+				$new
+			);
+			$this->session->set_flashdata('success', lang('selfstudy:lessonedit_success') );
+		}
 
 		$data_lesson = $this->admin_m->get_lesson( $this->uri->segment(4), $this->uri->segment(5) );
+
+		/* If exit is indicated, redirect */
+		if( $input['btnAction'] == 'save_exit' )
+		{
+			redirect('admin/selfstudy/edit/' . $data_lesson['course_slug'] . '#course-lessons');
+			return NULL;
+		}
 
 		$this->template
 			->append_metadata($this->load->view('fragments/wysiwyg', array(), TRUE))
