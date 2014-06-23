@@ -60,20 +60,21 @@ class Admin extends Admin_Controller
 
 	public function create()
 	{
-		$this->template
-			->append_js('module::assignments.js')
-			->set('title', '')
-			->set('slug', '')
-			->set('description', '')
-			->set('version', '')
-			->set('data_lessons', array())
-			->build('admin/edit_course');
+		if( $this->uri->segment(4) != NULL )
+		{
+			$this->edit_lesson();
+		}
+		else
+		{
+			return $this->edit_course();
+		}
 	}
 
 	public function edit_course()
 	{
 		$input = $this->input->post();
 		$success = FALSE;
+		$new = FALSE;
 
 		if(
 			isset( $input['courseid'] ) AND
@@ -84,7 +85,6 @@ class Admin extends Admin_Controller
 			)
 		{
 			$id = $input['courseid'];
-			$new = FALSE;
 			if( $id == "" )
 			{
 				$id = $this->generate_uuid4();
@@ -112,23 +112,32 @@ class Admin extends Admin_Controller
 		$data_course = $this->admin_m->get_course( $this->uri->segment(4) );
 		$data_lessons = $this->admin_m->get_lessons( $this->uri->segment(4) );
 
-		$this->template
-			->append_metadata('<script>var fields_offset=0;</script>')
-			->append_js('module::assignments.js')
-			->set('success', $success)
-			->set('courseid', $data_course['courseid'])
-			->set('title', $data_course['title'])
-			->set('slug', $data_course['slug'])
-			->set('description', $data_course['description'])
-			->set('version', $data_course['version'])
-			->set('data_lessons', $data_lessons)
-			->build('admin/edit_course');
+		if( $new )
+		{
+			$this->session->set_flashdata('success', lang('selfstudy:coursenew_success') );
+			redirect('admin/selfstudy/edit/' . $input['slug']);
+		}
+		else
+		{
+			$this->template
+				->append_metadata('<script>var fields_offset=0;</script>')
+				->append_js('module::assignments.js')
+				->set('success', $success)
+				->set('courseid', $data_course['courseid'])
+				->set('title', $data_course['title'])
+				->set('slug', $data_course['slug'])
+				->set('description', $data_course['description'])
+				->set('version', $data_course['version'])
+				->set('data_lessons', $data_lessons)
+				->build('admin/edit_course');
+		}
 	}
 
 	public function edit_lesson()
 	{
 		$input = $this->input->post();
 		$success = FALSE;
+		$new = FALSE;
 
 		/* Handle post-data */
 		if(
@@ -139,7 +148,6 @@ class Admin extends Admin_Controller
 			)
 		{
 			$id = $input['lessonid'];
-			$new = FALSE;
 			if( $id == "" )
 			{
 				$id = $this->generate_uuid4();
@@ -165,16 +173,24 @@ class Admin extends Admin_Controller
 			return NULL;
 		}
 
-		$this->template
-			->append_metadata($this->load->view('fragments/wysiwyg', array(), TRUE))
-			->set('success', $success)
-			->set('lessonid', $data_lesson['lessonid'])
-			->set('course_title', $data_lesson['course_title'])
-			->set('title', $data_lesson['title'])
-			->set('course_slug', $data_lesson['course_slug'])
-			->set('slug', $data_lesson['slug'])
-			->set('content', $data_lesson['content'])
-			->build('admin/edit_lesson');
+		if( $new )
+		{
+			$this->session->set_flashdata('success', lang('selfstudy:lessonnew_success') );
+			redirect('admin/selfstudy/edit/' . $data_lesson['course_slug'] . '/' . $data_lesson['slug']);
+		}
+		else
+		{
+			$this->template
+				->append_metadata($this->load->view('fragments/wysiwyg', array(), TRUE))
+				->set('success', $success)
+				->set('lessonid', $data_lesson['lessonid'])
+				->set('course_title', $data_lesson['course_title'])
+				->set('title', $data_lesson['title'])
+				->set('course_slug', $data_lesson['course_slug'])
+				->set('slug', $data_lesson['slug'])
+				->set('content', $data_lesson['content'])
+				->build('admin/edit_lesson');
+		}
 	}
 
 	public function edit()

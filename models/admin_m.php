@@ -30,6 +30,7 @@ class Admin_m extends MY_Model {
 		if( $new)
 		{
 			$data['courseid'] = $id;
+			$data['rawhtml'] = "";
 			$this->db->insert($this->db->dbprefix($_table_prefix . 'courses'), $data); 
 		}
 		else
