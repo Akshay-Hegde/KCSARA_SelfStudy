@@ -1,0 +1,213 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>How to Create a Self Study Course</title>
+		<meta name="slug" content="how_to_create_a_self_study_course" />
+		<meta name="description" content="Instructions on how to create a self study course ready for publication." />
+		<meta name="version" content="a1" />
+	</head>
+	<body>
+		<section id="introduction">
+			<h1>Introduction</h1>
+			<p>It takes many individuals to create and maintain a first-rate education system, and many tiers of effort. People learn in many different ways, so knowledge needs to be communicated in many different ways. Thus, classrooms need to be staffed with instructors, written tests need to be proctored, and practical exams need to be administered. An important layer to this, is a time-shifted self study program.</p>
+			<p>This self study course is intended to get you started helping to create, author, and/or maintain a self study course. In most cases, we hope you're not doing this alone. Work with others that might have complimentary skills to your own. If you don't know something, and can't find help, contact the administrator, or webmaster. They might know just what you need, or be able to put you in touch with someone who does.</p>
+			<p>Above all else, don't give up. You have much to contribute, and there are many who want to know what you already know.</p>
+		</section>
+		<section id="terminology">
+			<h1>Terminology</h1>
+			<table>
+				<tr
+					<td>
+						<p>Course</p>
+					</td>
+					<td>
+						<p>For the purposes of the self study web application, a course is a collection of lessons covering one or more topics under a single title. "How to Create a Self Study Course" is a single course.</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Lesson</p>
+					</td>
+					<td>
+						<p>Again, in the context of the self study web application, a lesson is major subsection of a course. "Introduction", "Terminology", "Structure", etc. are all lessons in the "How to Create a Self Study Course" course.</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>HTML</p>
+					</td>
+					<td>
+						<p>Hypertext Markup Language, or HTML, is a collection of tags, that when embedded in a plain text document help define the semantics, or meaning, of that text. HTML-tags are not displayed when shown to a viewer.</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>CSS</p>
+					</td>
+					<td>
+						<p>A Content Style Sheet is a set of rules, that is used to determine how an HTML marked up document is displayed, to represent the semantics of the content.</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Open Source</p>
+					</td>
+					<td>
+						<p>Open source is the status of an intellectual property's copyright, where some activities are allowed without further permission by the copyright owner.</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>CDN</p>
+					</td>
+					<td>
+						<p>A Content Delivery Network</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>Web Application</p>
+					</td>
+					<td>
+						<p>A web application is an interactive portion of a website. In the context of this course, the web application refers to the system used to publish formatted self study courses.</p>
+					</td>
+				</tr>
+			</table>
+		</section>
+		<section id="structure">
+			<h1>Structure</h1>
+			<p>Courses are made up of a series of individual lessons. Each lesson must be able to stand along as a single page. Each lesson must have an overall title. Try to keep these lesson titles relatively short, one or two words, as they'll appear as items in the table of contents.</p>
+			<p>As aconvention, you should consider beginning your course' with two lessons titled "Introduction", and "Terminology", and ending with two lessons titled "Summary" and "Challenge".</p>
+			<p>The contents of each lesson may be just about anything you can represent on a webpage. More on this later.</p>
+		</section>
+		<section id="content">
+			<h1>Content</h1>
+			<p>Medium to large commercial websites use content delivery networks (CNDs) to disperse their content over many servers. This makes content delivery more efficient, storage more robust, saves costs, and improves visitor experience. There are many reasons small websites do not want to host all of their media on their own server. Instead, they use publicly available services to host much of their most storage intensive content.</p>
+			<p>There are many options for free, or almost free storage</p>
+		</section>
+		<section id="markup">
+			<h1>Markup</h1>
+			<p>A self study course is stored, or saved, as a single valid HTML file. This file should contain an HTML5 doctype, specific meta data described below, and a body consisting of one section-container for each lesson.</p>
+			<h2>Metadata</h2>
+			<p>Every course requires a title, description, version, and "slug". These are all specified in the head-elements of the HTML file. The example below should communicate how to markup this information.</p>
+			<p>The title will be automatically displayed in a list of available titles, at the top of every lesson's page, and along with additional information in the title-bar of some web browsers, so don't make this too long. Three to seven words should be just about right.</p>
+			<p>The description is mostly for an administrator to understand quickly what the course covers. One to three sentences, in a single paragraph should be enough.</p>
+			<p>Theversion can be anything. As a convention, prefix the version of a course that is still in development, and not yet complete, with an "a" - for "alpha" (for example "a1"), and a course that is complete, but not yet vetted for errors, with a "b" - for "beta" (for example "b3"). For a course that's ready for publishing, use a series of three numbers separated by periods, where the first number indicated major changes and additions, the second minor changes, and the third simple bug fixes (for example "1.4.22").</p>
+			<p>A "slug" is a short URL-safe string that the web application uses as part of the course' web address. This should be generally human-readable, strictly alpha-numeric, all lowercase, and replace spaces with underscores. So for example a course titled "Map &amp; Compass" might have a slug of "map_and_compass".</p>
+			<pre>&lt;head&gt;
+	&lt;title&gt;How to Create a Self Study Course&lt;/title&gt;
+	&lt;meta name="slug" content="how_to_create_a_self_study_course" /&gt;
+	&lt;meta name="description" content="Instructions on how to create a self study course ready for publication." /&gt;
+	&lt;meta name="version" content="a1" /&gt;
+&lt;/head&gt;</pre>
+			<h2>Lesson Section-containers</h2>
+			<p>Each lesson must be contained in a section-container tag-pair, and must start with an H1 header tag-pair. Each lesson also requires a "slug" of its own, and this is provided as an attribute in the opening section tag.</p>
+			<p>After the H1 header, and before the closing section tag, can be any well formed and valid HTML. But, please read carefully the portions below on semantics and accessibility. In practice there might be HTML content that breaks the web application's automated import routines. If these are identified, they should be reported to the developer as soon as possible.</p>
+			<pre>&lt;section id="introduction"&gt;
+	&lt;h1&gt;Introduction&lt;/h1&gt;
+	&lt;p&gt;It takes many individuals to create and maintain a first-rate education system, and many tiers of effort. People learn in many different ways, so knowledge needs to be communicated in many different ways. Thus, classrooms need to be staffed with instructors, written tests need to be proctored, and practical exams need to be administered. An important layer to this, is a time-shifted self study program.&lt;/p&gt;
+	&lt;p&gt;This self study course is intended to get you started helping to create, author, and/or maintain a self study course. In most cases, we hope you're not doing this alone. Work with others that might have complimentary skills to your own. If you don't know something, and can't find help, contact the administrator, or webmaster. They might know just what you need, or be able to put you in touch with someone who does.&lt;/p&gt;
+	&lt;p&gt;Above all else, don't give up. You have much to contribute, and there are many who want to know what you already know.&lt;/p&gt;
+&lt;/section&gt;</pre>
+			<h2>Example of Full Markup</h2>
+			<pre>&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;title&gt;How to Create a Self Study Course&lt;/title&gt;
+		&lt;meta name="slug" content="how_to_create_a_self_study_course" /&gt;
+		&lt;meta name="description" content="Instructions on how to create a self study course ready for publication." /&gt;
+		&lt;meta name="version" content="a1" /&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;section id="introduction"&gt;
+			&lt;h1&gt;Introduction&lt;/h1&gt;
+			&lt;p&gt;It takes many individuals to create and maintain a first-rate education system, and many tiers of effort. People learn in many different ways, so knowledge needs to be communicated in many different ways. Thus, classrooms need to be staffed with instructors, written tests need to be proctored, and practical exams need to be administered. An important layer to this, is a time-shifted self study program.&lt;/p&gt;
+			&lt;p&gt;This self study course is intended to get you started helping to create, author, and/or maintain a self study course. In most cases, we hope you're not doing this alone. Work with others that might have complimentary skills to your own. If you don't know something, and can't find help, contact the administrator, or webmaster. They might know just what you need, or be able to put you in touch with someone who does.&lt;/p&gt;
+			&lt;p&gt;Above all else, don't give up. You have much to contribute, and there are many who want to know what you already know.&lt;/p&gt;
+		&lt;/section&gt;
+		&lt;section id="terminology"&gt;
+			&lt;h1&gt;Terminology&lt;/h1&gt;
+			&lt;table&gt;
+				&lt;tr
+					&lt;td&gt;Course&lt;/td&gt;
+					&lt;td&gt;For the purposes of the self study web application, a course is a collection of lessons covering one or more topics under a single title. "How to Create a Self Study Course" is a single course.&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;Lesson&lt;/td&gt;
+					&lt;td&gt;Again, in the context of the self study web application, a lesson is major subsection of a course. "Introduction", "Terminology", "Structure", etc. are all lessons in the "How to Create a Self Study Course" course.&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;HTML&lt;/td&gt;
+					&lt;td&gt;Hypertext Markup Language, or HTML, is a collection of tags, that when embedded in a plain text document help define the semantics, or meaning, of that text. HTML-tags are not displayed when shown to a viewer.&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/table&gt;
+		&lt;/section&gt;
+		&lt;section id="structure"&gt;
+			&lt;h1&gt;Structure&lt;/h1&gt;
+			&lt;p&gt;Courses are made up of a series of individual lessons. Each lesson must be able to stand along as a single page. Each lesson must have an overall title. Try to keep these lesson titles relatively short, one or two words, as they'll appear as items in the table of contents.&lt;/p&gt;
+			&lt;p&gt;As aconvention, you should consider beginning your course' with two lessons titled "Introduction", and "Terminology", and ending with two lessons titled "Summary" and "Challenge".&lt;/p&gt;
+			&lt;p&gt;The contents of each lesson may be just about anything you can represent on a webpage. More on this later.&lt;/p&gt;
+		&lt;/section&gt;
+		<p>...snip...</p>
+		&lt;section id="summary"&gt;
+			&lt;h1&gt;Summary&lt;/h1&gt;
+			&lt;p&gt;To create a self study course:&lt;/p&gt;
+			&lt;ol&gt;
+				&lt;li&gt;&lt;p&gt;Decide on a title for your course&lt;/p&gt;
+				&lt;li&gt;&lt;p&gt;Write a short description&lt;/p&gt;
+				&lt;li&gt;&lt;p&gt;Create a repository for your course using an Apache 2.0 license&lt;/p&gt;
+				&lt;li&gt;&lt;p&gt;Identify the main lessons within your course&lt;/p&gt;
+				&lt;li&gt;&lt;p&gt;Author your course content with a focus on semantics instead of style&lt;/p&gt;
+				&lt;li&gt;&lt;p&gt;Markup you course&lt;/p&gt;
+				&lt;li&gt;&lt;p&gt;Consult with experts when necessary&lt;/p&gt;
+				&lt;li&gt;&lt;p&gt;Provide repository access to the administrator&lt;/p&gt;
+				&lt;li&gt;&lt;p&gt;Work with the administrator to make any necessary changes&lt;/p&gt;
+				&lt;li&gt;&lt;p&gt;And finally, continue to manage your course' content.&lt;/p&gt;
+			&lt;/ol&gt;
+			&lt;p&gt;Self study courses are easily authored and published, but some care needs to be taken to ensure they meet both the technical and policy requirements of the host web application. Some knowledge of HTML is needed, but courses can be created and maintained as a group effort, with different people providing different skills.&lt;/p&gt;
+		&lt;/section&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</pre>
+			<h2>Semantics</h2>
+			<p>HTML has gone through a long history of use. There is a lot of legacy information, and outdated methodologies of marking up content. Self study courses live within a content management system, where the display of different items has been carefully thought out, and should remain consistent across the entire website.</p>
+			<p>Do not markup your course with a thought towards display. If you do this, chances are your course will be branched, and the markup altered by the webmaster, to indicate meaning rather than look. Webpages are read by more than just people, and not all people "view" webpages in the same way. So leave your concern about how something looks at the door, and concentrate on each piece of information's meaning.</p>
+			<h2>Accessibility</h2>
+			<p>Many people view webpages on Microsoft's Internet Explorer, some on Apple's Safari, some on Mozilla's Firefox. Each of these browser's display web content differently. Same people, more than you might think, take this a step further. Webpages can be viewed in black and white, or color shifted, or in a negative color pallet, all to help the viewer with a vision disability. Webpages can be viewed with images turned off, headlines and body text shown at dramatically different sizes than you might consider "normal". Some people listen to webpages, and don't see them at all. Almost everyone will experience a disability at some point in their life. Well authored web content takes this into account, and most well managed websites have written policies their authors must work under.</p>
+			<p>[links, scripts, etc. examples of alternative content consumption.]</p>
+			<p>Above all, read and understand any accessibility policy in place for the website you plan on hosting your self study course. But as a rule of thumb, you can't go too wrong if your course is composed of simple semantic HTML, and images with well thought out alt-attributes (descriptive text that's displayed or read when the image is omitted).</p>
+			<p>Other media may be embedded as well, such at videos, interactive scripts, etc. But remember the viewer might not be able to view, read, listen to, or otherwise experience this content. Professionals experienced with producing such content with accessible features may have to be consulted. At the very least, a text-based alternative should be provided.</p>
+			<p>[links to accessibility information on the web]</p>
+		</section>
+		<section id="versioning">
+			<h1>Versioning</h1>
+			<p>It is strongly recommended that a versioning solution be used to store, and version, each course. Our convention is to use a publicly accessible repository on <a href="https://github.com/KingCountySAR">Github</a> to store courses.</p>
+			<p>Versioning systems allow multiple individuals to checkout, edit, and commit back a single course. The versioning system keeps track of all changes, provides tools for merging disparate versions, and rolling back to previous versions when necessary. Branching and pulling static versions is also supported.</p>
+		</section>
+		<section id="copyright">
+			<h1>Copyright</h1>
+			<p>For many reasons, it's our practice, to the extent possible, to open source all of our courses, under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0 license</a>. This allows other parties to utilize our material in whole or in part, for most purposes. However, they must attribute the material to us, and not hold us liable for the contents.</p>
+		</section>
+		<section id="publishing">
+			<h1>Publishing</h1>
+			<p>Once completed to a state ready for publishing. Notify the administrator, or webmaster, and provide access to the course' repository. The administrator will checkout the finished course, and review the markup. If needed, the administrator will make changes at this time, and commit those changes back to the repository. Once both you and the administrator are satisfied with the course, the administrator will upload the course to the web application, which will automatically parse the file into its internal storage.</p>
+			<p>Courses can be published and depublished quite easily using the web application's administrator dashboard. However, no two course may be published with the same "slug".</p>
+		</section>
+		<section id="summary">
+			<h1>Summary</h1>
+			<p>To create a self study course:</p>
+			<ol>
+				<li><p>Decide on a title for your course</p>
+				<li><p>Write a short description</p>
+				<li><p>Create a repository for your course using an Apache 2.0 license</p>
+				<li><p>Identify the main lessons within your course</p>
+				<li><p>Author your course content with a focus on semantics instead of style</p>
+				<li><p>Markup you course</p>
+				<li><p>Consult with experts when necessary</p>
+				<li><p>Provide repository access to the administrator</p>
+				<li><p>Work with the administrator to make any necessary changes</p>
+				<li><p>And finally, continue to manage your course' content.</p>
+			</ol>
+			<p>Self study courses are easily authored and published, but some care needs to be taken to ensure they meet both the technical and policy requirements of the host web application. Some knowledge of HTML is needed, but courses can be created and maintained as a group effort, with different people providing different skills.</p>
+		</section>
+	</body>
+</html>
