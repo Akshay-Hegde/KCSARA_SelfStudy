@@ -10,7 +10,6 @@
 			<?php foreach($data_course as $data): ?>
 				<li><a href="<?php echo '/' . $uri_base . $data['course_slug'] . '/' . $data['lesson_slug'] ?>"><?php echo htmlspecialchars( $data['lesson_title'] ) ?></a></li>
 			<?php endforeach; ?>
-			<li class="exam-link"><a href="/training/exams/<?php echo $data['course_slug'] ?>">Online Exam</a></li>
 		</ol>
 	</div>
 
